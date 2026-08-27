@@ -1,0 +1,13 @@
+{
+  "name": "agora-token-server",
+  "version": "1.0.0",
+  "description": "Simple Agora RTC Token Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "agora-token": "^2.0.3",
+    "express": "^4.19.2"
+  }
+}
