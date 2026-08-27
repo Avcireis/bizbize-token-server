@@ -1,5 +1,5 @@
 const express = require('express');
-const { RtcTokenBuilder, RtcRole } = require('agora-access-token');
+const { RtcTokenBuilder, RtcRole } = require('agora-token');
 
 const app = express();
 
@@ -10,19 +10,21 @@ app.get('/rtc/:channelName', (req, res) => {
     const channelName = req.params.channelName;
     if (!channelName) return res.status(400).json({ error: 'Channel name is required' });
 
-    // RTC Token oluştur (En güncel ve stabil metod)
+    const uid = 0;
+    const role = RtcRole.PUBLISHER;
     const expirationTimeInSeconds = 3600 * 24; // 24 saat
     const currentTimestamp = Math.floor(Date.now() / 1000);
     const privilegeExpiredTs = currentTimestamp + expirationTimeInSeconds;
 
-    // ÖNEMLİ: buildTokenWithUid yerine buildTokenWithAccount deneyelim (daha geniş kapsama sahiptir)
+    // buildTokenWithUid yerine buildTokenWithAccount genellikle daha garantidir
     const token = RtcTokenBuilder.buildTokenWithUid(
         APP_ID,
         APP_CERTIFICATE,
         channelName,
-        0, // 0 = Tüm UID'ler için geçerli wildcard token
-        RtcRole.PUBLISHER,
-        privilegeExpiredTs
+        uid,
+        role,
+        privilegeExpiredTs, // token son kullanma
+        privilegeExpiredTs  // yetki son kullanma
     );
 
     res.header("Access-Control-Allow-Origin", "*");
