@@ -3,7 +3,7 @@ const { RtcTokenBuilder, RtcRole } = require('agora-token');
 const app = express();
 
 const APP_ID = '707bf31341584776b13043d4761662a8';
-const APP_CERTIFICATE = '156121b6d17b4c8180630b771304b9b3';
+const APP_CERTIFICATE = '156121fda34f430f8e3758359834b9b3';
 
 app.get('/rtc/:channelName/:uid', (req, res) => {
     const channelName = req.params.channelName;
