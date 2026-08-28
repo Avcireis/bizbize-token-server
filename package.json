@@ -1,8 +1,9 @@
 {
   "name": "agora-token-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "dependencies": {
     "agora-token": "^2.0.3",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "firebase-admin": "^12.1.1"
   }
 }
